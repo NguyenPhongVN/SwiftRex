@@ -12,7 +12,7 @@
 [![Platform support](https://img.shields.io/badge/platform-iOS%20%7C%20watchOS%20%7C%20tvOS%20%7C%20macOS%20%7C%20Catalyst-252532.svg)](https://github.com/SwiftRex/SwiftRex)
 [![License Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/SwiftRex/SwiftRex/blob/master/LICENSE)
 
-If you've got questions, about SwiftRex or redux and Functional Programming in general, please [Join our Slack Channel](https://join.slack.com/t/swiftrex/shared_invite/zt-oko9h1z4-Nq4YsK2FbMJ~giN01sdDeQ).
+If you've got questions, about SwiftRex or redux and Functional Programming in general, please [Join our Slack Channel](https://join.slack.com/t/swiftrex/shared_invite/zt-1t8nh584x-CVKBSsw6kpzKtHbX2FMgZw).
 
 # Introduction
 
@@ -106,7 +106,7 @@ That's the scenario where SwiftRex shines, because it:
   <p>All these tools are already done and will be released any time soon, and more are expected for the future.</p>
 </details>
 
-I'm not gonna lie, it's a completely different way of writing apps, as most reactive approaches are; but once you get used to, it makes more sense and enables you to reuse much more code between your projects, gives you better tooling for writing software, testing, debugging, logging and finally thinking about events, state and mutation as you've never done before. And I promise you, it's gonna be a way with no return, an Unidirectional journey.
+I'm not gonna lie, it's a completely different way of writing apps, as most reactive approaches are; but once you get used to, it makes more sense and enables you to reuse much more code between your projects, gives you better tooling for writing software, testing, debugging, logging and finally thinking about events, state and mutation as you've never done before. And I promise you, it's gonna be a way with no return, a unidirectional journey.
 
 # Reactive Framework Libraries
 SwiftRex currently supports the 3 major reactive frameworks:
@@ -215,7 +215,7 @@ In a device with limited battery and memory we can't afford having a true event-
 
 > **STATE** is the result of a function that takes two arguments: the previous (or initial) state and some action that occurred, to determine the new state. This happens incrementally as more and more actions arrive. State is useful for **output** data to the user.
 
-However, be careful, some things may look like state but they are not. Let's assume you have an app that shows an item price to the user. This price will be shown as `"$3.00"` in US, or `"$3,00"` in Germany, or maybe this product can be listed in british pounds, so in US we should show `"£3.00"` while in Germany it would be `"£3,00"`. In this example we have:
+However, be careful, some things may look like state but they are not. Let's assume you have an app that shows an item price to the user. This price will be shown as `"$3.00"` in US, or `"$3,00"` in Germany, or maybe this product can be listed in British pounds, so in US we should show `"£3.00"` while in Germany it would be `"£3,00"`. In this example we have:
 - Currency type (`£` or `$`)
 - Numeric value (`3`)
 - Locale (`en_US` or `de_DE`)
@@ -725,7 +725,7 @@ The function is reducing all the actions in a cached state, and that happens inc
 
 It's important to understand that reducer is a synchronous operations that calculates a new state without any kind of side-effect (including non-obvious ones as creating `Date()`, using DispatchQueue or `Locale.current`), so never add properties to the ``Reducer`` structs or call any external function. If you are tempted to do that, please create a middleware and dispatch actions with Dates or Locales from it. 
 
-Reducers are also responsible for keeping the consistency of a state, so it's always good to do a final sanity check before changing the state, like for example check other dependant properties that must be changed together.
+Reducers are also responsible for keeping the consistency of a state, so it's always good to do a final sanity check before changing the state, like for example check other dependent properties that must be changed together.
 
 Once the reducer function executes, the store will update its single source-of-truth with the new calculated state, and propagate it to all its subscribers, that will react to the new state and update Views, for example.
 
@@ -1191,7 +1191,7 @@ Void and Never are dual:
 
 # Architecture
 
-This dataflow is, somehow, an implementation of MVC, one that differs significantly from the Apple's MVC for offering a very strict and opinative description of layers' responsibilities and by enforcing the growth of the Model layer, through a better definition of how it should be implemented: in this scenario, the Model is the Store. All your Controller has to do is to forward view actions to the Store and subscribe to state changes, updating the views whenever needed. If this flow doesn't sound like MVC, let's check a picture taken from Apple's website:
+This dataflow is, somehow, an implementation of MVC, one that differs significantly from the Apple's MVC for offering a very strict and opinionated description of layers' responsibilities and by enforcing the growth of the Model layer, through a better definition of how it should be implemented: in this scenario, the Model is the Store. All your Controller has to do is to forward view actions to the Store and subscribe to state changes, updating the views whenever needed. If this flow doesn't sound like MVC, let's check a picture taken from Apple's website:
 
 ![iOS MVC](https://swiftrex.github.io/SwiftRex/markdown/img/CocoaMVC.gif)
 
@@ -1359,7 +1359,7 @@ If you use it from only one target, automatic mode should be fine.
 
 Combine, automatic linking mode:
 ```swift
-// swift-tools-version:5.4
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -1370,7 +1370,7 @@ let package = Package(
     .executable(name: "MyApp", targets: ["MyApp"])
   ],
   dependencies: [
-    .package(url: "https://github.com/SwiftRex/SwiftRex.git", from: "0.8.11")
+    .package(url: "https://github.com/SwiftRex/SwiftRex.git", from: "0.8.12")
   ],
   targets: [
     .target(name: "MyApp", dependencies: [.product(name: "CombineRex", package: "SwiftRex")])
@@ -1380,7 +1380,7 @@ let package = Package(
 
 RxSwift, automatic linking mode:
 ```swift
-// swift-tools-version:5.4
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -1391,7 +1391,7 @@ let package = Package(
     .executable(name: "MyApp", targets: ["MyApp"])
   ],
   dependencies: [
-    .package(url: "https://github.com/SwiftRex/SwiftRex.git", from: "0.8.11")
+    .package(url: "https://github.com/SwiftRex/SwiftRex.git", from: "0.8.12")
   ],
   targets: [
     .target(name: "MyApp", dependencies: [.product(name: "RxSwiftRex", package: "SwiftRex")])
@@ -1401,7 +1401,7 @@ let package = Package(
 
 ReactiveSwift, automatic linking mode:
 ```swift
-// swift-tools-version:5.4
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -1412,7 +1412,7 @@ let package = Package(
     .executable(name: "MyApp", targets: ["MyApp"])
   ],
   dependencies: [
-    .package(url: "https://github.com/SwiftRex/SwiftRex.git", from: "0.8.11")
+    .package(url: "https://github.com/SwiftRex/SwiftRex.git", from: "0.8.12")
   ],
   targets: [
     .target(name: "MyApp", dependencies: [.product(name: "ReactiveSwiftRex", package: "SwiftRex")])
@@ -1422,7 +1422,7 @@ let package = Package(
 
 Combine, dynamic linking mode (use similar approach of appending "Dynamic" also for RxSwift or ReactiveSwift products):
 ```swift
-// swift-tools-version:5.4
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -1433,7 +1433,7 @@ let package = Package(
     .executable(name: "MyApp", targets: ["MyApp"])
   ],
   dependencies: [
-    .package(url: "https://github.com/SwiftRex/SwiftRex.git", from: "0.8.11")
+    .package(url: "https://github.com/SwiftRex/SwiftRex.git", from: "0.8.12")
   ],
   targets: [
     .target(name: "MyApp", dependencies: [.product(name: "CombineRexDynamic", package: "SwiftRex")])
